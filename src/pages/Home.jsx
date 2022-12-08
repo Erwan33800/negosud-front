@@ -14,7 +14,7 @@ function Home(props) {
         bg={useColorModeValue("gray.50", "gray.800")}
       >
         <Stack spacing={8} mb={10} pt={20} align="center">
-          <Heading as="h2" size="2xl">
+          <Heading as="h2" size="2xl" textAlign="center" >
             Bienvenue sur Négosud
           </Heading>
         </Stack>
