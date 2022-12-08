@@ -1,7 +1,7 @@
 import React from "react";
 import Logout from "./Logout";
 import { Flex, Button, chakra, useColorMode } from "@chakra-ui/react";
-import { MoonIcon, SunIcon } from '@chakra-ui/icons';
+import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 
 function Header(props) {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -19,10 +19,12 @@ function Header(props) {
           {" "}
           NÉGOSUD{" "}
         </Button>
-        <Button onClick={toggleColorMode}>
-          {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
-        </Button>
-        <Logout />
+        <Flex justify={"center"} align={"center"} mr={5}>
+          <Button variant="brand" onClick={toggleColorMode}>
+            {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+          </Button>
+          <Logout />
+        </Flex>
       </Flex>
     </chakra.header>
   );
