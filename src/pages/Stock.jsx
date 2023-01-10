@@ -51,9 +51,9 @@ function StockSettings(props) {
           <Table variant="simple" colorScheme={"teal"} size={"md"}>
             <Thead>
               <Tr>
-                <Th>Prénom Nom</Th>
-                <Th>Nb de fois sélectionné</Th>
-                <Th isNumeric>Note Fifa</Th>
+                <Th>Nom de la bouteille</Th>
+                <Th>Nombre de bouteilles</Th>
+                <Th isNumeric>Note Client</Th>
                 <Th textAlign={"center"}>Actions</Th>
               </Tr>
             </Thead>

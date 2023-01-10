@@ -48,8 +48,6 @@ function FournisseursTableBody(props) {
       <Tbody>
         <Tr>
           <Td>Thiago Silva</Td>
-          <Td>0</Td>
-          <Td isNumeric>0</Td>
           <Td>
             <Flex justify={"space-evenly"}>
                 <UpdateF />

@@ -48,8 +48,8 @@ function CommandsTableBody(props) {
       <Tbody>
         <Tr>
           <Td>Commande 654564</Td>
-          <Td>0</Td>
-          <Td isNumeric>0</Td>
+          <Td>10</Td>
+          <Td isNumeric>7</Td>
           <Td>
             <Flex justify={"space-evenly"}>
               <UpdateF />
