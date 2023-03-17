@@ -13,7 +13,7 @@ function Header(props) {
         py="5"
         align="center"
         justify="space-between"
-        bg="#7c8b73"
+        bg="#CE5347"
       >
         <Button variant="text" color="white">
           {" "}
