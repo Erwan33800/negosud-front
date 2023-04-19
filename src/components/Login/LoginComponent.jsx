@@ -33,7 +33,6 @@ const LoginComponent = () => {
         }
       );
 
-      const accessToken = response?.data?.accessToken;
 
       // remet les inputs à vide
       setEmail("");
