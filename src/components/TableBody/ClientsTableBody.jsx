@@ -47,9 +47,9 @@ function ClientsTableBody(props) {
       ))}
       <Tbody>
         <Tr>
-          <Td>Thiago Silva</Td>
-          <Td>0</Td>
-          <Td isNumeric>0</Td>
+          <Td>Chateau Latour</Td>
+          <Td>50</Td>
+          <Td isNumeric>8.5</Td>
           <Td>
             <Flex justify={"space-evenly"}>
               <UpdateClient />

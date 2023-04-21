@@ -1,10 +1,11 @@
 import React from "react";
-import { Heading, Stack, Box, useColorModeValue } from "@chakra-ui/react";
+import { Stack, Box, useColorModeValue } from "@chakra-ui/react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Menu from "../components/Menu";
+import vinsHome from "../assets/vinsHome.png";
 
-function Home(props) {
+function Home() {
   return (
     <>
       <Header />
@@ -14,9 +15,10 @@ function Home(props) {
         bg={useColorModeValue("gray.50", "gray.800")}
       >
         <Stack spacing={8} mb={10} pt={20} align="center">
-          <Heading as="h2" size="2xl" textAlign="center" >
-            Bienvenue sur Négosud
-          </Heading>
+          <img
+           src={vinsHome}
+           alt="pt_menu"
+          />
         </Stack>
         <Menu />
       </Box>

@@ -1,127 +1,122 @@
 import React from "react";
-import { Center, Box, Grid, Heading, Link, Stack } from "@chakra-ui/react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faNoteSticky,
-  faUsers,
-} from "@fortawesome/free-solid-svg-icons";
+import { Center, Box, Grid, Heading, Text, Stack } from "@chakra-ui/react";
+import tariquet from "../assets/tariquet.jpg";
+import HospicesDeBeaune from "../assets/HospicesDeBeaune.jpg"
+import cognac from "../assets/cognac.jpg"
+
 
 function Menu(props) {
   return (
     <>
+      <Text fontSize='3xl'>Les bouteilles du moment :</Text>
       <Grid templateColumns="repeat(3, 1fr)" pt={20} gap={6}>
-        <Link href="/stock-settings">
           <Box w="100%" h="100%">
             <Center py={6}>
               <Box
+                width={200}
+                height={230}
+                left={245}
+                borderRadius={22}
                 maxW={"270px"}
-                w={"full"}
                 bg={"white"}
                 boxShadow={"lg"}
-                rounded={"lg"}
                 overflow={"hidden"}
                 p={6}
               >
                 <Stack spacing={0} align={"center"} mb={5}>
                   <Heading
+                  width={147}
+                  height={130}
+                  left={919}
+                  top={637}
                     fontSize={"6xl"}
                     fontWeight={500}
                     mb={5}
                     fontFamily={"body"}
                   >
-                    <FontAwesomeIcon icon={faNoteSticky} />
+                    <img 
+                      src={tariquet}
+                      alt="pt_menu"
+                     />
                   </Heading>
 
-                  <p>Gestion des stocks</p>
+                  <p>Tariquet</p>
                 </Stack>
               </Box>
             </Center>
           </Box>
-        </Link>
-        <Link href="/commands-settings">
           <Box w="100%" h="100%">
             <Center py={6}>
-              <Box
+            <Box
+                width={200}
+                height={230}
+                left={245}
+                top={637}
+                borderRadius={22}
                 maxW={"270px"}
-                w={"full"}
                 bg={"white"}
                 boxShadow={"lg"}
-                rounded={"lg"}
                 overflow={"hidden"}
                 p={6}
               >
                 <Stack spacing={0} align={"center"} mb={5}>
                   <Heading
+                  width={147}
+                  height={130}
+                  left={919}
+                  top={637}
                     fontSize={"6xl"}
                     fontWeight={500}
                     mb={5}
                     fontFamily={"body"}
                   >
-                    <FontAwesomeIcon icon={faNoteSticky} />
+                     <img 
+                      src={HospicesDeBeaune}
+                      alt="pt_menu"
+                     />
                   </Heading>
 
-                  <p>Gestions des commandes</p>
+                  <p>Hospices de Beaune</p>
                 </Stack>
               </Box>
             </Center>
           </Box>
-        </Link>
-        <Link href="/fournisseurs-settings">
           <Box w="100%" h="100%">
             <Center py={6}>
-              <Box
+            <Box
+                width={200}
+                height={230}
+                left={245}
+                top={637}
+                borderRadius={22}
                 maxW={"270px"}
-                w={"full"}
                 bg={"white"}
                 boxShadow={"lg"}
-                rounded={"lg"}
                 overflow={"hidden"}
                 p={6}
               >
                 <Stack spacing={0} align={"center"} mb={5}>
                   <Heading
+                  width={147}
+                  height={130}
+                  left={919}
+                  top={637}
                     fontSize={"6xl"}
                     fontWeight={500}
                     mb={5}
                     fontFamily={"body"}
                   >
-                    <FontAwesomeIcon icon={faNoteSticky} />
+                     <img 
+                      src={cognac}
+                      alt="pt_menu"
+                     />
                   </Heading>
 
-                  <p>Gestions des fournisseurs</p>
+                  <p>Cognac</p>
                 </Stack>
               </Box>
             </Center>
           </Box>
-        </Link>
-        <Link href="/clients-settings">
-          <Box w="100%" h="100%">
-            <Center py={6}>
-              <Box
-                maxW={"270px"}
-                w={"full"}
-                bg={"white"}
-                boxShadow={"lg"}
-                rounded={"lg"}
-                overflow={"hidden"}
-                p={6}
-              >
-                <Stack spacing={0} align={"center"} mb={5}>
-                  <Heading
-                    fontSize={"6xl"}
-                    fontWeight={500}
-                    mb={5}
-                    fontFamily={"body"}
-                  >
-                    <FontAwesomeIcon icon={faUsers} />
-                  </Heading>
-
-                  <p>Gestion des clients</p>
-                </Stack>
-              </Box>
-            </Center>
-          </Box>
-        </Link>
       </Grid>
     </>
   );

@@ -28,7 +28,7 @@ import {
   export default function Footer() {
     return (
       <Box
-        bg='#7c8b73'
+        bg='#CE5347'
         color='white'
       >
         <Container

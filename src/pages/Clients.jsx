@@ -53,7 +53,6 @@ function ClientsSettings(props) {
               <Tr>
                 <Th>Prénom Nom</Th>
                 <Th>Nb de fois sélectionné</Th>
-                <Th isNumeric>Note Fifa</Th>
                 <Th textAlign={"center"}>Actions</Th>
               </Tr>
             </Thead>

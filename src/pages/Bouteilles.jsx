@@ -25,40 +25,23 @@ function BottleSettings(props) {
         justify={"center"}
         bg={useColorModeValue("gray.50", "gray.800")}
       >
-        <Flex justify={"space-between"} align={"center"} ml={20} mr={20} pt={5}>
+        <Flex justify={"space-between"} align={"center"} ml={20} mr={20} pt={10}>
           <Box>
             <Heading as="h2" fontSize="4xl">
-              Gérer les Footballers
+              Les vins
             </Heading>
-            <Text fontSize="md">
-              Interface qui permet d'ajouter, de modifier ou de supprimer des
-              footballers.
-            </Text>
           </Box>
-          <Box>
-            <Link href="/admin/footballer-create">
-              <Button colorScheme="green" mr={2}>
-                Ajouter un footballer
+          <Box top={1000}>
+            <Link href="">
+              <Button variant="ghost" colorScheme="red" >
+                Rouge
               </Button>
             </Link>
-            <Link href="/admin">
-              <Button colorScheme="orange">Retour</Button>
+            <Link href="">
+              <Button variant="ghost" colorScheme="blackAlpha">Blanc</Button>
             </Link>
           </Box>
         </Flex>
-        <TableContainer ml={20} mr={20} mb={10} pt={5}>
-          <Table variant="simple" colorScheme={"teal"} size={"md"}>
-            <Thead>
-              <Tr>
-                <Th>Prénom Nom</Th>
-                <Th>Nb de fois sélectionné</Th>
-                <Th isNumeric>Note Fifa</Th>
-                <Th textAlign={"center"}>Actions</Th>
-              </Tr>
-            </Thead>
-            {/* <FootballerTableSettings /> */}
-          </Table>
-        </TableContainer>
       </Box>
       <Footer />
     </div>

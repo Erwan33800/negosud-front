@@ -51,9 +51,7 @@ function FournisseursSettings(props) {
           <Table variant="simple" colorScheme={"teal"} size={"md"}>
             <Thead>
               <Tr>
-                <Th>Nom</Th>
-                <Th>Nb de fois sélectionné</Th>
-                <Th isNumeric>Note Fifa</Th>
+                <Th>Nom du fournissseur</Th>
                 <Th textAlign={"center"}>Actions</Th>
               </Tr>
             </Thead>

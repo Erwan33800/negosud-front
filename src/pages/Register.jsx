@@ -1,16 +1,16 @@
 import React from "react";
 import LeftPart from "../components/Login/LeftPart";
-import LoginComponent from "../components/Login/LoginComponent";
+import RegisterComponent from "../components/Register/RegisterComponent";
 import "../styles/Auth/Auth.css";
 
-function Login(props) {
+function Register(props) {
     return (
         //ecrire le code ici
         <div className="auth-component" >
             <LeftPart />
-            <LoginComponent />
+            <RegisterComponent />
         </div>        
     )
 };
 
-export default Login;
+export default Register;

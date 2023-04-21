@@ -51,9 +51,9 @@ function CommandsSettings(props) {
           <Table variant="simple" colorScheme={"teal"} size={"md"}>
             <Thead>
               <Tr>
-                <Th>Nom</Th>
-                <Th>Nb de fois sélectionné</Th>
-                <Th isNumeric>Note Fifa</Th>
+                <Th>Numéro de commande</Th>
+                <Th>Nombre de commande</Th>
+                <Th isNumeric>Note Fournisseur</Th>
                 <Th textAlign={"center"}>Actions</Th>
               </Tr>
             </Thead>
