@@ -12,6 +12,9 @@ import StockSettings from "./pages/Stock";
 import CreateStock from "./components/Stock/CreateS";
 import ForgetPasswordC from "./components/Login/ForgetPasswordC";
 import Register from "./pages/Register";
+import CommandsSettingsUser from "./pages/CommandsUser";
+import OneBottleSettings from "./pages/OneBottle";
+import Panier from "./pages/Panier";
 
 function App() {
   return (
@@ -28,6 +31,7 @@ function App() {
         <Route path="/home" element={<Home />} />
 
         <Route path="/bouteilles-settings" element={<BottleSettings />} />
+        <Route path="/one-bottle-settings" element={<OneBottleSettings />} />
 
         <Route path="/clients-settings" element={<ClientsSettings />} />
         <Route path="/client-create" element={<CreateClient />} />
@@ -39,10 +43,16 @@ function App() {
         <Route path="/fournisseur-create" element={<CreateF />} />
 
         <Route path="/commands-settings" element={<CommandsSettings />} />
+        <Route
+          path="/commands-settings-user"
+          element={<CommandsSettingsUser />}
+        />
         <Route path="/command-create" element={<CreateCommand />} />
 
         <Route path="/stock-settings" element={<StockSettings />} />
         <Route path="/stock-create" element={<CreateStock />} />
+
+        <Route path="/panier" element={<Panier />} />
       </Routes>
     </BrowserRouter>
   );
