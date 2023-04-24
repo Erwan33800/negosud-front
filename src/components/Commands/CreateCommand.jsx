@@ -18,10 +18,9 @@ import Footer from "../Footer";
 import axios from "axios";
 
 function CreateCommand(props) {
-  const [fname, setFname] = useState("");
-  const [lname, setLname] = useState("");
-  const [nb_selection, setNb_selection] = useState("");
-  const [fifa_note, setFifa_note] = useState("");
+  const [idCommand, setIdCommand] = useState("");
+  const [nbBottle, setNbBottle] = useState("");
+  const [priceGlobal, setPriceGlobal] = useState("");
 
   const history = useNavigate();
 
@@ -63,30 +62,32 @@ function CreateCommand(props) {
           >
             <Stack spacing={4}>
               <FormControl
-                id="lname"
+                id="idCommand"
                 required
-                //onChange={(e) => setLname(e.target.value)}
+                //onChange={(e) => setIdCommand(e.target.value)}
               >
-                <FormLabel>Nom de famille :</FormLabel>
-                <Input type="text" />
-              </FormControl>
-              <FormControl
-                id="fname"
-                required
-                //onChange={(e) => setFname(e.target.value)}
-              >
-                <FormLabel>Prénom :</FormLabel>
+                <FormLabel>Numéro de la commande :</FormLabel>
                 <Input type="text" />
               </FormControl>
 
               <FormControl
-                id="fifa_note"
+                id="nbBottle"
                 required
-                //onChange={(e) => setFifa_note(e.target.value)}
+                //onChange={(e) => setNbBottle(e.target.value)}
               >
-                <FormLabel>Note Fifa :</FormLabel>
+                <FormLabel>Nombre de bouteilles :</FormLabel>
                 <Input type="text" />
               </FormControl>
+
+              <FormControl
+                id="priceGlobal"
+                required
+                //onChange={(e) => setPriceGlobal(e.target.value)}
+              >
+                <FormLabel>Prix total de la commande :</FormLabel>
+                <Input type="text" />
+              </FormControl>
+
               <Flex justify={"space-around"}>
                 <Button
                   type="submit"
