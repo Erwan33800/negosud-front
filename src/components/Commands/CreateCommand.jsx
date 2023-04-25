@@ -18,24 +18,9 @@ import Footer from "../Footer";
 import axios from "axios";
 
 function CreateCommand(props) {
-  const [idCommand, setIdCommand] = useState("");
-  const [nbBottle, setNbBottle] = useState("");
-  const [priceGlobal, setPriceGlobal] = useState("");
+  const [orderName, setOrderName] = useState("");
 
   const history = useNavigate();
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   const fournisseur = {
-  //     fname,
-  //     lname,
-  //     nb_selection,
-  //     fifa_note,
-  //   };
-  //   await axios.post(`http://localhost:5010/create-fournisseur`, fournisseur);
-  //   history("/admin/fournisseurs-settings");
-
-  // };
 
   return (
     <>
@@ -64,29 +49,13 @@ function CreateCommand(props) {
               <FormControl
                 id="idCommand"
                 required
-                //onChange={(e) => setIdCommand(e.target.value)}
               >
-                <FormLabel>Numéro de la commande :</FormLabel>
+                <FormLabel>Nom de la commande :</FormLabel>
                 <Input type="text" />
               </FormControl>
 
-              <FormControl
-                id="nbBottle"
-                required
-                //onChange={(e) => setNbBottle(e.target.value)}
-              >
-                <FormLabel>Nombre de bouteilles :</FormLabel>
-                <Input type="text" />
-              </FormControl>
 
-              <FormControl
-                id="priceGlobal"
-                required
-                //onChange={(e) => setPriceGlobal(e.target.value)}
-              >
-                <FormLabel>Prix total de la commande :</FormLabel>
-                <Input type="text" />
-              </FormControl>
+              
 
               <Flex justify={"space-around"}>
                 <Button

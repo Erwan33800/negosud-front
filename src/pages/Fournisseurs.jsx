@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import {
@@ -29,17 +29,17 @@ function FournisseursSettings(props) {
         <Flex justify={"space-between"} align={"center"} ml={20} mr={20} pt={5}>
           <Box>
             <Heading as="h2" fontSize="4xl">
-              Gérer les Fournisseurs
+              Gérer les utilisateurs
             </Heading>
             <Text fontSize="md">
               Interface qui permet d'ajouter, de modifier ou de supprimer des
-              fournisseurs.
+              utilisateurs.
             </Text>
           </Box>
           <Box>
             <Link href="/fournisseur-create">
               <Button colorScheme="green" mr={2}>
-                Ajouter un Fournisseur
+                Ajouter un Utilisateurs
               </Button>
             </Link>
             <Link href="/">
@@ -51,7 +51,9 @@ function FournisseursSettings(props) {
           <Table variant="simple" colorScheme={"teal"} size={"md"}>
             <Thead>
               <Tr>
-                <Th>Nom du fournissseur</Th>
+                <Th>Utilisateurs</Th>
+                <Th>Email</Th>
+                <Th>Rôle</Th>
                 <Th textAlign={"center"}>Actions</Th>
               </Tr>
             </Thead>

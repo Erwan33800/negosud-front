@@ -6,60 +6,43 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRemove } from "@fortawesome/free-solid-svg-icons";
 
 function StockTableBody(props) {
-  const [data, setData] = useState([]);
-  const getData = async () => {
-    const { data } = await axios.get(`http://localhost:5010/footballers`);
-    setData(data);
-  };
+  const [bottles, setBottles] = useState();
+
   useEffect(() => {
-    getData();
+    axios.get("https://localhost:7201/api/article").then((response) => {
+      setBottles(response.data);
+    });
   }, []);
 
-  const handleDelete = async (id) => {
-    await axios.post(`http://localhost:5010/delete-footballer/${id}`);
-    getData();
+  const handleDelete = async (id_f) => {
+    await axios.delete(`https://localhost:7201/api/user/${id_f}`);
+    window.location.reload();
   };
   return (
     <>
-      {data.map((footballer) => (
-        <Tbody>
-          <Tr>
-            <Td>
-              {footballer.fname} {footballer.lname}
-            </Td>
-            <Td>{footballer.nb_selection}</Td>
-            <Td isNumeric>{footballer.fifa_note}</Td>
-            <Td>
-              <Flex justify={"space-evenly"}>
-                <UpdateS footballer={footballer} />
-                <Button
-                  size={"sm"}
-                  variant="brand"
-                  color="red"
-                  onClick={() => handleDelete(footballer.id_f)}
-                >
-                  <FontAwesomeIcon icon={faRemove} />
-                </Button>
-              </Flex>
-            </Td>
-          </Tr>
-        </Tbody>
-      ))}
-      <Tbody>
-        <Tr>
-          <Td>Thiago Silva</Td>
-          <Td>0</Td>
-          <Td isNumeric>0</Td>
-          <Td>
-            <Flex justify={"space-evenly"}>
-              <UpdateS />
-              <Button size={"sm"} variant="brand" color="red">
-                <FontAwesomeIcon icon={faRemove} />
-              </Button>
-            </Flex>
-          </Td>
-        </Tr>
-      </Tbody>
+      {bottles &&
+        bottles.map((bottle) => (
+          <Tbody>
+            <Tr>
+              <Td>{bottle.name}</Td>
+              <Td>{bottle.stock}</Td>
+              <Td isNumeric>{bottle.price}</Td>
+              <Td>
+                <Flex justify={"space-evenly"}>
+                  <UpdateS bottle={bottle} />
+                  <Button
+                    size={"sm"}
+                    variant="brand"
+                    color="red"
+                    onClick={() => handleDelete(bottle.id_f)}
+                  >
+                    <FontAwesomeIcon icon={faRemove} />
+                  </Button>
+                </Flex>
+              </Td>
+            </Tr>
+          </Tbody>
+        ))}
     </>
   );
 }

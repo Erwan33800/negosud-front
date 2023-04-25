@@ -5,59 +5,47 @@ import UpdateF from "../Fournisseurs/UpdateF";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRemove } from "@fortawesome/free-solid-svg-icons";
 
-function FournisseursTableBody(props) {
-  const [data, setData] = useState([]);
-  const getData = async () => {
-    const { data } = await axios.get(`http://localhost:5010/footballers`);
-    setData(data);
-  };
+function FournisseursTableBody() {
+  const [fournisseurs, setFournisseurs] = useState();
+
   useEffect(() => {
-    getData();
+    axios.get("https://localhost:7201/api/user").then((response) => {
+      setFournisseurs(response.data);
+    });
   }, []);
 
-  const handleDelete = async (id) => {
-    await axios.post(`http://localhost:5010/delete-footballer/${id}`);
-    getData();
+  const handleDelete = async (id_f) => {
+    await axios.delete(`https://localhost:7201/api/user/${id_f}`);
+    window.location.reload();
   };
+
   return (
     <>
-      {data.map((footballer) => (
-        <Tbody>
-          <Tr>
-            <Td>
-              {footballer.fname} {footballer.lname}
-            </Td>
-            <Td>{footballer.nb_selection}</Td>
-            <Td isNumeric>{footballer.fifa_note}</Td>
-            <Td>
-              <Flex justify={"space-evenly"}>
-                <UpdateF footballer={footballer} />
-                <Button
-                  size={"sm"}
-                  variant="brand"
-                  color="red"
-                  onClick={() => handleDelete(footballer.id_f)}
-                >
-                  <FontAwesomeIcon icon={faRemove} />
-                </Button>
-              </Flex>
-            </Td>
-          </Tr>
-        </Tbody>
-      ))}
-      <Tbody>
-        <Tr>
-          <Td>Thiago Silva</Td>
-          <Td>
-            <Flex justify={"space-evenly"}>
-                <UpdateF />
-              <Button size={"sm"} variant="brand" color="red">
-                <FontAwesomeIcon icon={faRemove} />
-              </Button>
-            </Flex>
-          </Td>
-        </Tr>
-      </Tbody>
+      {fournisseurs &&
+        fournisseurs.map((fournisseur) => (
+          <Tbody>
+            <Tr>
+              <Td>
+                {fournisseur.firstName} {fournisseur.lastName}
+              </Td>
+              <Td>{fournisseur.email}</Td>
+              <Td>{fournisseur.role}</Td>
+              <Td>
+                <Flex justify={"space-evenly"}>
+                  <UpdateF fournisseur={fournisseur} />
+                  <Button
+                    size={"sm"}
+                    variant="brand"
+                    color="red"
+                    onClick={() => handleDelete(fournisseur.id)}
+                  >
+                    <FontAwesomeIcon icon={faRemove} />
+                  </Button>
+                </Flex>
+              </Td>
+            </Tr>
+          </Tbody>
+        ))}
     </>
   );
 }

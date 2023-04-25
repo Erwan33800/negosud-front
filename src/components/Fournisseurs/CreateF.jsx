@@ -18,25 +18,24 @@ import Footer from "../Footer";
 import axios from "axios";
 
 function CreateF(props) {
-  const [fname, setFname] = useState("");
-  const [lname, setLname] = useState("");
-  const [nb_selection, setNb_selection] = useState("");
-  const [fifa_note, setFifa_note] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
 
   const history = useNavigate();
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   const fournisseur = {
-  //     fname,
-  //     lname,
-  //     nb_selection,
-  //     fifa_note,
-  //   };
-  //   await axios.post(`http://localhost:5010/create-fournisseur`, fournisseur);
-  //   history("/admin/fournisseurs-settings");
-
-  // };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const fournisseur = {
+      firstName,
+      lastName,
+      email,
+      role: 5,
+      password: "",
+    };
+    await axios.post(`https://localhost:7201/api/user`, fournisseur);
+    history("/fournisseurs-settings");
+  };
 
   return (
     <>
@@ -65,7 +64,7 @@ function CreateF(props) {
               <FormControl
                 id="lname"
                 required
-                //onChange={(e) => setLname(e.target.value)}
+                onChange={(e) => setLastName(e.target.value)}
               >
                 <FormLabel>Nom de famille :</FormLabel>
                 <Input type="text" />
@@ -73,18 +72,18 @@ function CreateF(props) {
               <FormControl
                 id="fname"
                 required
-                //onChange={(e) => setFname(e.target.value)}
+                onChange={(e) => setFirstName(e.target.value)}
               >
                 <FormLabel>Prénom :</FormLabel>
                 <Input type="text" />
               </FormControl>
 
               <FormControl
-                id="fifa_note"
+                id="email"
                 required
-                //onChange={(e) => setFifa_note(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
               >
-                <FormLabel>Note Fifa :</FormLabel>
+                <FormLabel>Email :</FormLabel>
                 <Input type="text" />
               </FormControl>
               <Flex justify={"space-around"}>
@@ -95,7 +94,7 @@ function CreateF(props) {
                   _hover={{
                     bg: "blue.500",
                   }}
-                  //onClick={handleSubmit}
+                  onClick={handleSubmit}
                 >
                   Créer
                 </Button>

@@ -20,30 +20,24 @@ import { faRedo } from "@fortawesome/free-solid-svg-icons";
 
 function UpdateS(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [name, setName] = useState();
+  const [stock, setStock] = useState();
+  const [price, setPrice] = useState();
 
+  const handleUpdate = async (e) => {
+    e.preventDefault();
 
-  // const id_f = props.footballer.id_f;
-  // const [fname, setFname] = useState("");
-  // const [lname, setLname] = useState("");
-  // const [nb_selection, setNb_selection] = useState("");
-  // const [fifa_note, setFifa_note] = useState("");
-
-  // const handleUpdate = async (e) => {
-  //   e.preventDefault();
-  //   const footballer = {
-  //     id_f: id_f,
-  //     fname: fname,
-  //     lname: lname,
-  //     nb_selection: nb_selection,
-  //     fifa_note: fifa_note,
-  //   };
-  //   await axios.put(
-  //     `http://localhost:5010/update-footballer/${id_f}`,
-  //     footballer
-  //   );
-  //   onClose();
-  //   window.location.reload();
-  // };
+    const bottle = {
+      id: props.bottle.id,
+      name: name,
+      stock: stock,
+      price: price,
+      userId: 3,
+    };
+    await axios.put(`https://localhost:7201/api/article`, bottle);
+    onClose();
+    window.location.reload();
+  };
 
   return (
     <>
@@ -59,39 +53,28 @@ function UpdateS(props) {
           <ModalBody>
             <Stack spacing={4}>
               <FormControl
-                id="lname"
+                id="name"
                 required
-                // onChange={(e) => setLname(e.target.value)}
+                onChange={(e) => setName(e.target.value)}
               >
-                <FormLabel>Nom de famille :</FormLabel>
-                <Input type="text" placeholder={"props.fournisseur.lname"} />
+                <FormLabel>Nom de la bouteille :</FormLabel>
+                <Input type="text" />
               </FormControl>
               <FormControl
-                id="fname"
+                id="price"
                 required
-                //onChange={(e) => setFname(e.target.value)}
+                onChange={(e) => setPrice(e.target.value)}
               >
-                <FormLabel>Prénom :</FormLabel>
-                <Input type="text" placeholder={"props.fournisseur.fname"} />
+                <FormLabel>Prix de la bouteille :</FormLabel>
+                <Input type="text" />
               </FormControl>
               <FormControl
-                id="fifa_note"
+                id="stock"
                 required
-                //onChange={(e) => setFifa_note(e.target.value)}
+                onChange={(e) => setStock(e.target.value)}
               >
-                <FormLabel>Note Fifa :</FormLabel>
-                <Input type="text" placeholder={"props.fournisseur.fifa_note"} />
-              </FormControl>
-              <FormControl
-                id="nb_selection"
-                required
-                //onChange={(e) => setNb_selection(e.target.value)}
-              >
-                <FormLabel>Nombre de sélection :</FormLabel>
-                <Input
-                  type="text"
-                  placeholder={"props.fournisseur.nb_selection"}
-                />
+                <FormLabel>Nouveau stock :</FormLabel>
+                <Input type="text" />
               </FormControl>
             </Stack>
           </ModalBody>
@@ -103,7 +86,7 @@ function UpdateS(props) {
               _hover={{
                 bg: "blue.500",
               }}
-              //onClick={handleUpdate}
+              onClick={handleUpdate}
               mr={5}
             >
               Modifier

@@ -6,60 +6,44 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRemove } from "@fortawesome/free-solid-svg-icons";
 
 function CommandsTableBody(props) {
-  const [data, setData] = useState([]);
-  const getData = async () => {
-    const { data } = await axios.get(`http://localhost:5010/footballers`);
-    setData(data);
-  };
+  const [commands, setCommands] = useState();
+
   useEffect(() => {
-    getData();
+    axios.get("https://localhost:7201/api/order").then((response) => {
+      setCommands(response.data);
+    });
   }, []);
 
   const handleDelete = async (id) => {
-    await axios.post(`http://localhost:5010/delete-footballer/${id}`);
-    getData();
+    await axios.delete(`https://localhost:7201/api/order/${id}`);
+    window.location.reload();
   };
   return (
     <>
-      {data.map((footballer) => (
-        <Tbody>
-          <Tr>
-            <Td>
-              {footballer.fname} {footballer.lname}
-            </Td>
-            <Td>{footballer.nb_selection}</Td>
-            <Td isNumeric>{footballer.fifa_note}</Td>
-            <Td>
-              <Flex justify={"space-evenly"}>
-                <UpdateF footballer={footballer} />
-                <Button
-                  size={"sm"}
-                  variant="brand"
-                  color="red"
-                  onClick={() => handleDelete(footballer.id_f)}
-                >
-                  <FontAwesomeIcon icon={faRemove} />
-                </Button>
-              </Flex>
-            </Td>
-          </Tr>
-        </Tbody>
-      ))}
-      <Tbody>
-        <Tr>
-          <Td>Commande 654564</Td>
-          <Td>10</Td>
-          <Td isNumeric>7</Td>
-          <Td>
-            <Flex justify={"space-evenly"}>
-              <UpdateF />
-              <Button size={"sm"} variant="brand" color="red">
-                <FontAwesomeIcon icon={faRemove} />
-              </Button>
-            </Flex>
-          </Td>
-        </Tr>
-      </Tbody>
+      {commands &&
+        commands.map((command) => (
+          <Tbody>
+            <Tr>
+              <Td>{command.orderName}</Td>
+              <Td>{command.orderDate}</Td>
+              <Td isNumeric>{command.orderTotal}</Td>
+              <Td>{command.orderStatus}</Td>
+              <Td>
+                <Flex justify={"space-evenly"}>
+                  <UpdateF command={command} />
+                  <Button
+                    size={"sm"}
+                    variant="brand"
+                    color="red"
+                    onClick={() => handleDelete(command.id)}
+                  >
+                    <FontAwesomeIcon icon={faRemove} />
+                  </Button>
+                </Flex>
+              </Td>
+            </Tr>
+          </Tbody>
+        ))}
     </>
   );
 }

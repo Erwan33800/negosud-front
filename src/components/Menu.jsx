@@ -3,10 +3,14 @@ import { Center, Box, Grid, Heading, Text, Stack } from "@chakra-ui/react";
 import tariquet from "../assets/tariquet.jpg";
 import HospicesDeBeaune from "../assets/HospicesDeBeaune.jpg";
 import cognac from "../assets/cognac.jpg";
+import vinsHome from "../assets/vinsHome.png";
 
 function Menu(props) {
   return (
     <>
+      <Stack spacing={8} mb={10} pt={20} align="center">
+        <img src={vinsHome} alt="pt_menu" />
+      </Stack>
       <Text fontSize="3xl" align={"center"}>
         Les bouteilles du moment :
       </Text>
