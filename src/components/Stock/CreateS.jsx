@@ -18,25 +18,26 @@ import Footer from "../Footer";
 import axios from "axios";
 
 function CreateS(props) {
-  const [fname, setFname] = useState("");
-  const [lname, setLname] = useState("");
-  const [nb_selection, setNb_selection] = useState("");
-  const [fifa_note, setFifa_note] = useState("");
+  const [name, setName] = useState("");
+  const [stock, setStock] = useState(1);
+  const [price, setPrice] = useState(0);
 
   const history = useNavigate();
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   const fournisseur = {
-  //     fname,
-  //     lname,
-  //     nb_selection,
-  //     fifa_note,
-  //   };
-  //   await axios.post(`http://localhost:5010/create-fournisseur`, fournisseur);
-  //   history("/admin/fournisseurs-settings");
-
-  // };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const stockInfo = {
+      name,
+      stock,
+      price,
+      userId: 5,
+      reference: "string",
+      date: "2023-04-12T19:49:57.870Z",
+      origin: "string",
+    };
+    await axios.post(`https://localhost:7201/api/article`, stockInfo);
+    history("/stock-settings");
+  };
 
   return (
     <>
@@ -63,28 +64,28 @@ function CreateS(props) {
           >
             <Stack spacing={4}>
               <FormControl
-                id="lname"
+                id="name"
                 required
-                //onChange={(e) => setLname(e.target.value)}
+                onChange={(e) => setName(e.target.value)}
               >
-                <FormLabel>Nom de famille :</FormLabel>
+                <FormLabel>Nom du domaine :</FormLabel>
                 <Input type="text" />
               </FormControl>
               <FormControl
-                id="fname"
+                id="stock"
                 required
-                //onChange={(e) => setFname(e.target.value)}
+                onChange={(e) => setStock(e.target.value)}
               >
-                <FormLabel>Prénom :</FormLabel>
+                <FormLabel>Nombre de bouteilles :</FormLabel>
                 <Input type="text" />
               </FormControl>
 
               <FormControl
-                id="fifa_note"
+                id="price"
                 required
-                //onChange={(e) => setFifa_note(e.target.value)}
+                onChange={(e) => setPrice(e.target.value)}
               >
-                <FormLabel>Note Fifa :</FormLabel>
+                <FormLabel>Prix unitaire :</FormLabel>
                 <Input type="text" />
               </FormControl>
               <Flex justify={"space-around"}>
@@ -95,7 +96,7 @@ function CreateS(props) {
                   _hover={{
                     bg: "blue.500",
                   }}
-                  //onClick={handleSubmit}
+                  onClick={handleSubmit}
                 >
                   Créer
                 </Button>

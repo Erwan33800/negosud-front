@@ -20,8 +20,28 @@ import {
   StackDivider,
   Center,
 } from "@chakra-ui/react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import config from "../components/Login/config.json";
 
 function Panier(props) {
+  const [cart, setCart] = useState([]);
+
+  const cart2 = config.carts;
+  const totalPriceCart =
+    cart2 && cart2.reduce((acc, cart) => acc + cart.totalPrice, 0);
+
+  useEffect(() => {
+    axios.get(`https://localhost:7201/api/cart`).then((response) => {
+      setCart(response.data);
+    });
+  }, []);
+
+  const buyCard = () => {
+    alert("Votre commande a bien été prise en compte");
+    window.location.href = "/home";
+  };
+
   return (
     <div>
       <Header />
@@ -40,51 +60,26 @@ function Panier(props) {
 
                   <CardBody>
                     <Stack divider={<StackDivider />} spacing="4">
-                      <Box>
-                        <Heading size="xs" textTransform="uppercase">
-                          Nom de la bouteille
-                        </Heading>
-                        <Flex>
+                      {cart2 &&
+                        cart2.map((cart) => (
                           <Box>
-                            <Text pt="2" fontSize="sm">
-                              Description de la bouteille
-                            </Text>
+                            <Heading size="xs" textTransform="uppercase">
+                              {cart.name}
+                            </Heading>
+                            <Flex>
+                              <Box>
+                                <Text pt="2" fontSize="sm">
+                                  Quantité: {cart.quantity}
+                                </Text>
+                              </Box>
+                              <Box ml={5}>
+                                <Text pt="2" fontSize="sm" as="b">
+                                  Prix :{cart.totalPrice} €
+                                </Text>
+                              </Box>
+                            </Flex>
                           </Box>
-                          <Box ml={5}>
-                            <Text as="b">45 €</Text>
-                          </Box>
-                        </Flex>
-                      </Box>
-                      <Box>
-                        <Heading size="xs" textTransform="uppercase">
-                          Nom de la bouteille
-                        </Heading>
-                        <Flex>
-                          <Box>
-                            <Text pt="2" fontSize="sm">
-                              Description de la bouteille
-                            </Text>
-                          </Box>
-                          <Box ml={5}>
-                            <Text as="b">45 €</Text>
-                          </Box>
-                        </Flex>
-                      </Box>
-                      <Box>
-                        <Heading size="xs" textTransform="uppercase">
-                          Nom de la bouteille
-                        </Heading>
-                        <Flex>
-                          <Box>
-                            <Text pt="2" fontSize="sm">
-                              Description de la bouteille
-                            </Text>
-                          </Box>
-                          <Box ml={5}>
-                            <Text as="b">45 €</Text>
-                          </Box>
-                        </Flex>
-                      </Box>
+                        ))}
                     </Stack>
                   </CardBody>
                 </Card>
@@ -111,10 +106,14 @@ function Panier(props) {
                   <Divider />
 
                   <Text color="blue.600" fontSize="2xl" align={"center"}>
-                    $450
+                    {totalPriceCart} €
                   </Text>
                   <CardFooter>
-                    <Button variant="solid" colorScheme="blue">
+                    <Button
+                      variant="solid"
+                      colorScheme="blue"
+                      onClick={buyCard}
+                    >
                       Acheter
                     </Button>
                   </CardFooter>

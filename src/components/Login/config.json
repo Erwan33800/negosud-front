@@ -1,0 +1,39 @@
+{
+    "users": [
+      {
+        "email": "admin@example.com",
+        "password": "azerty123456",
+        "role": "admin"
+      },
+      {
+        "email": "client@example.com",
+        "password": "azerty123456",
+        "role": "client"
+      },
+      {
+        "email": "test@test.com",
+        "password": "azerty123456",
+        "role": "client"
+      },
+      {
+        "email": "testAdmin@test.com",
+        "password": "azerty123456",
+        "role": "admin"
+      }
+    ],
+    "carts": [
+        {
+            "articleId": 8,
+            "name": "Chateau du Taillan",
+            "quantity": 1,
+            "totalPrice": 12
+        },
+        {
+            "articleId": 6,
+            "name": "Chateau D'Yquem",
+            "quantity": 7,
+            "totalPrice": 196
+        }
+    ]
+}
+  

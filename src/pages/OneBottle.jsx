@@ -9,8 +9,6 @@ import {
   Button,
   useColorModeValue,
   Center,
-  Alert,
-  AlertIcon,
 } from "@chakra-ui/react";
 
 import tariquet from "../assets/tariquet.jpg";
@@ -21,7 +19,7 @@ function OneBottleSettings() {
   const { id } = useParams();
   const [bottle, setBottle] = useState();
   const [loading, setLoading] = useState(true);
-  
+
   useEffect(() => {
     axios.get(`https://localhost:7201/api/article/${id}`).then((response) => {
       setBottle(response.data);
@@ -40,7 +38,7 @@ function OneBottleSettings() {
     // Ajouter l'élément au panier ici
     setIsAdded(true);
     setTimeout(() => setIsAdded(false), 3000);
-  }
+  };
 
   const handleDecrease = () => {
     if (quantity > 1) {
@@ -63,7 +61,7 @@ function OneBottleSettings() {
   const handleSubmitPanier = (e) => {
     e.preventDefault();
     const cart = {
-      articleId: id,
+      articleId: parseInt(id),
       quantity: 5,
     };
     axios.post("https://localhost:7201/api/cart", cart);
@@ -100,10 +98,7 @@ function OneBottleSettings() {
                     {name}
                   </Text>
                   <Box mt={5}>
-                    <Text as="i">
-                      Bordeaux, Saint Émilion Grand Cru GERER LE FAIT DE FAIRE
-                      DES +10 ou -10
-                    </Text>
+                    <Text as="i">Bordeaux, Saint Émilion Grand Cru</Text>
                     <Text>2019</Text>
                     <Text>
                       Quantité :

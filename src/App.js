@@ -15,6 +15,7 @@ import Register from "./pages/Register";
 import CommandsSettingsUser from "./pages/CommandsUser";
 import OneBottleSettings from "./pages/OneBottle";
 import Panier from "./pages/Panier";
+import HomeAdmin from "./pages/HomeAdmin";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/forget-password" element={<ForgetPasswordC />} />
 
         <Route path="/home" element={<Home />} />
+        <Route path="/homeAdmin" element={<HomeAdmin />} />
 
         <Route path="/bouteilles" element={<BottleSettings />} />
         <Route

@@ -23,9 +23,11 @@ function BottleSettings(props) {
   const [bottles, setBottles] = useState();
   const [searchTerm, setSearchTerm] = useState("");
 
-  const filteredBottles = bottles && bottles.filter((bottle) =>
-    bottle.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredBottles =
+    bottles &&
+    bottles.filter((bottle) =>
+      bottle.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
   useEffect(() => {
     axios.get("https://localhost:7201/api/article").then((response) => {
@@ -34,27 +36,11 @@ function BottleSettings(props) {
   }, []);
 
   return (
-    <Box h="calc(100vh)" bg={useColorModeValue("gray.50", "gray.800")}>
+    <Box align={"center"} h="calc(100vh)" bg={useColorModeValue("gray.50", "gray.800")}>
       <Header />
-      <Flex justify={"space-between"} align={"center"} ml={20} mr={20} pt={10}>
-        <Box>
-          <Heading as="h2" fontSize="4xl">
-            Les vins
-          </Heading>
-        </Box>
-        <Box top={1000}>
-          <Link href="">
-            <Button variant="ghost" colorScheme="red">
-              Rouge
-            </Button>
-          </Link>
-          <Link href="">
-            <Button variant="ghost" colorScheme="blackAlpha">
-              Blanc
-            </Button>
-          </Link>
-        </Box>
-      </Flex>
+      <Heading as="h2" fontSize="4xl" mt={5}>
+        Les vins
+      </Heading>
       <Input
         w={"30%"}
         ml={20}

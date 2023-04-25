@@ -1,129 +1,78 @@
-import React, { useState, useRef, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
+import {
+  FormControl,
+  FormLabel,
+  Input,
+  Button,
+  Alert,
+  AlertIcon,
+} from "@chakra-ui/react";
+import config from "./config.json";
 import axios from "axios";
 
 const LoginComponent = () => {
-  const userRef = useRef();
-  const errRef = useRef();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errMsg, setErrMsg] = useState("");
-  const [success, setSucess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  // put the focus on the user input
-  useEffect(() => {
-    userRef.current.focus();
-  }, []);
+  const handleLogin = () => {
+    // Vérifier si l'utilisateur est présent dans le fichier de configuration
+    const user = config.users.find(
+      (u) => u.email === email && u.password === password
+    );
 
-  useEffect(() => {
-    setErrMsg("");
-  }, [email, password]);
-
-  async function handleLogin(e) {
-    e.preventDefault();
-
-    try {
-      const response = await axios.post(
-        `http://localhost:5008/login`, // REACT_APP_API_URL
-        { email, password },
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true 
-        }
-      );
-
-
-      // remet les inputs à vide
-      setEmail("");
-      setPassword("");
-      if (response.data.user) {
-        setSucess(true);
-        if (response.data.role === "Student") {
-          window.location = "/";
-        } else if (response.data.role === "Teacher") {
-          window.location = "/teacher";
-        }
-      }
-      // window.location = "/";
-    } catch (error) {
-      if (!error?.response) {
-        setErrMsg("No Server Response");
-      } else if (error.response?.status === 400) {
-        setErrMsg("Missing Username or Password");
-      } else if (error.response?.status === 401) {
-        setErrMsg("Unauthorized");
+    if (user) {
+      // Stocker le rôle de l'utilisateur dans le local storage
+      localStorage.setItem("role", user.role);
+      // Rediriger vers la page d'accueil
+      if (user.role === "admin") {
+        window.location.href = "/homeAdmin";
       } else {
-        setErrMsg("Login Failed");
+        window.location.href = "/home";
       }
-      errRef.current.focus();
+    } else {
+      // Afficher un message d'erreur si l'utilisateur n'existe pas
+      setErrorMessage("Identifiants incorrects");
     }
-  }
-
+  };
   return (
     <>
-      {success ? (
-        <div className="right-part">
-          <h1>Vous êtes connecté !</h1>
-          <br />
-        </div>
-      ) : (
-        <div className="right-part">
-          <p
-            ref={errRef}
-            className={errMsg ? "errmsg" : "offscreen"}
-            aria-live="assertive"
-          >
-            {errMsg}
-          </p>
-          <h1 className="name-app">Négosud</h1>
-          <h2 className="title">Se connecter :</h2>
+      <div className="right-part">
+        {errorMessage && (
+          <Alert status="error" mb="8">
+            <AlertIcon />
+            {errorMessage}
+          </Alert>
+        )}
 
-          <form
-            onSubmit={handleLogin}
-            className="d-flex flex-column align-items-center"
-          >
-            <input
-              type="text"
-              id="email"
-              placeholder="Email"
-              ref={userRef}
-              onChange={(e) => setEmail(e.target.value)}
+        <h1 className="name-app">Négosud</h1>
+        <h2 className="title">Se connecter :</h2>
+
+        <form
+          onSubmit={handleLogin}
+          className="d-flex flex-column align-items-center"
+        >
+          <FormControl id="email" isRequired mb="4">
+            <FormLabel>Email</FormLabel>
+            <Input
+              type="email"
               value={email}
-              className="auth-input"
-              required
+              onChange={(e) => setEmail(e.target.value)}
             />
-            <input
+          </FormControl>
+          <FormControl id="password" isRequired mb="8">
+            <FormLabel>Mot de passe</FormLabel>
+            <Input
               type="password"
-              id="password"
-              placeholder="Mot de passe"
-              className="auth-input"
-              onChange={(e) => setPassword(e.target.value)}
               value={password}
-              required
+              onChange={(e) => setPassword(e.target.value)}
             />
-            <button className="auth-btn">Connexion</button>
-            <NavLink
-              style={{ fontSize: "14px" }}
-              end
-              to="/forget-password"
-              className="nav-link"
-            >
-              Mot de passe oublié ?
-            </NavLink>
-            <div>
-            <NavLink
-              style={{ fontSize: "14px" }}
-              end
-              to="/register"
-              className="regist"
-            >
-              Clique ici pour t'enregistrer
-            </NavLink>
-            </div>
-          </form>
-        </div>
-      )}
+          </FormControl>
+          <Button colorScheme="teal" onClick={handleLogin}>
+            Se connecter
+          </Button>
+        </form>
+      </div>
     </>
   );
 };
