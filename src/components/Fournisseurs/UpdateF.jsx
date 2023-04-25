@@ -18,32 +18,25 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRedo } from "@fortawesome/free-solid-svg-icons";
 
-function UpdateF(props) {
+function UpdateF(fournisseur) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const id_f = fournisseur.id_f;
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
 
-
-  // const id_f = props.footballer.id_f;
-  // const [fname, setFname] = useState("");
-  // const [lname, setLname] = useState("");
-  // const [nb_selection, setNb_selection] = useState("");
-  // const [fifa_note, setFifa_note] = useState("");
-
-  // const handleUpdate = async (e) => {
-  //   e.preventDefault();
-  //   const footballer = {
-  //     id_f: id_f,
-  //     fname: fname,
-  //     lname: lname,
-  //     nb_selection: nb_selection,
-  //     fifa_note: fifa_note,
-  //   };
-  //   await axios.put(
-  //     `http://localhost:5010/update-footballer/${id_f}`,
-  //     footballer
-  //   );
-  //   onClose();
-  //   window.location.reload();
-  // };
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    const fournisseur = {
+      id_f: id_f,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+    };
+    await axios.put(`https://localhost:7201/api/user`, fournisseur);
+    onClose();
+    window.location.reload();
+  };
 
   return (
     <>
@@ -64,7 +57,7 @@ function UpdateF(props) {
                 // onChange={(e) => setLname(e.target.value)}
               >
                 <FormLabel>Nom de famille :</FormLabel>
-                <Input type="text" placeholder={"props.fournisseur.lname"} />
+                <Input type="text" />
               </FormControl>
               <FormControl
                 id="fname"
@@ -72,26 +65,15 @@ function UpdateF(props) {
                 //onChange={(e) => setFname(e.target.value)}
               >
                 <FormLabel>Prénom :</FormLabel>
-                <Input type="text" placeholder={"props.fournisseur.fname"} />
+                <Input type="text" />
               </FormControl>
               <FormControl
                 id="fifa_note"
                 required
                 //onChange={(e) => setFifa_note(e.target.value)}
               >
-                <FormLabel>Note Fifa :</FormLabel>
-                <Input type="text" placeholder={"props.fournisseur.fifa_note"} />
-              </FormControl>
-              <FormControl
-                id="nb_selection"
-                required
-                //onChange={(e) => setNb_selection(e.target.value)}
-              >
-                <FormLabel>Nombre de sélection :</FormLabel>
-                <Input
-                  type="text"
-                  placeholder={"props.fournisseur.nb_selection"}
-                />
+                <FormLabel>Email:</FormLabel>
+                <Input type="text" />
               </FormControl>
             </Stack>
           </ModalBody>

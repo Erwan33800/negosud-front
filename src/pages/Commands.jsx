@@ -37,11 +37,6 @@ function CommandsSettings(props) {
             </Text>
           </Box>
           <Box>
-            <Link href="/command-create">
-              <Button colorScheme="green" mr={2}>
-                Ajouter une commande
-              </Button>
-            </Link>
             <Link href="/">
               <Button colorScheme="orange">Retour</Button>
             </Link>
@@ -51,9 +46,10 @@ function CommandsSettings(props) {
           <Table variant="simple" colorScheme={"teal"} size={"md"}>
             <Thead>
               <Tr>
-                <Th>Numéro de commande</Th>
-                <Th>Nombre de commande</Th>
-                <Th isNumeric>Note Fournisseur</Th>
+                <Th>Nom de commande</Th>
+                <Th>Date</Th>
+                <Th isNumeric>Prix total</Th>
+                <Th>Status</Th>
                 <Th textAlign={"center"}>Actions</Th>
               </Tr>
             </Thead>

@@ -15,7 +15,7 @@ import {
   Button,
   useColorModeValue,
 } from "@chakra-ui/react";
-import ClientsTableBody from "../components/TableBody/ClientsTableBody";
+import StockTableBody from "../components/TableBody/StockTableBody";
 
 function StockSettings(props) {
   return (
@@ -53,11 +53,11 @@ function StockSettings(props) {
               <Tr>
                 <Th>Nom de la bouteille</Th>
                 <Th>Nombre de bouteilles</Th>
-                <Th isNumeric>Note Client</Th>
+                <Th isNumeric>Prix unitaire</Th>
                 <Th textAlign={"center"}>Actions</Th>
               </Tr>
             </Thead>
-            <ClientsTableBody />
+            <StockTableBody />
           </Table>
         </TableContainer>
       </Box>
