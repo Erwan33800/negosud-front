@@ -82,38 +82,10 @@ function Menu(props) {
                     mb={5}
                     fontFamily={"body"}
                   >
-                    <FontAwesomeIcon icon={faNoteSticky} />
-                  </Heading>
-
-                  <p>Gestions des fournisseurs</p>
-                </Stack>
-              </Box>
-            </Center>
-          </Box>
-        </Link>
-        <Link href="/clients-settings">
-          <Box w="100%" h="100%">
-            <Center py={6}>
-              <Box
-                maxW={"270px"}
-                w={"full"}
-                bg={"white"}
-                boxShadow={"lg"}
-                rounded={"lg"}
-                overflow={"hidden"}
-                p={6}
-              >
-                <Stack spacing={0} align={"center"} mb={5}>
-                  <Heading
-                    fontSize={"6xl"}
-                    fontWeight={500}
-                    mb={5}
-                    fontFamily={"body"}
-                  >
                     <FontAwesomeIcon icon={faUsers} />
                   </Heading>
 
-                  <p>Gestion des clients</p>
+                  <p>Gestions des utilisateurs</p>
                 </Stack>
               </Box>
             </Center>

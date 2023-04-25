@@ -15,7 +15,7 @@ import {
   Button,
   useColorModeValue,
 } from "@chakra-ui/react";
-import CommandsTableBodyUser from "../components/TableBody/CommandsTableBodyUser";
+import CommandsTableBody from "../components/TableBody/CommandsTableBody";
 
 function CommandsSettingsUser(props) {
   return (
@@ -32,7 +32,8 @@ function CommandsSettingsUser(props) {
               Gérer les Commandes
             </Heading>
             <Text fontSize="md">
-              Interface qui permet de gérer ses commandes.
+              Interface qui permet de voir toutes les commandes que vous avez
+              passées.
             </Text>
           </Box>
           <Box>            
@@ -45,13 +46,12 @@ function CommandsSettingsUser(props) {
           <Table variant="simple" colorScheme={"teal"} size={"md"}>
             <Thead>
               <Tr>
-                <Th>Numéro de commande</Th>
-                <Th>Nombre de bouteilles</Th>
+                <Th>Nom de commande</Th>
+                <Th>Date</Th>
                 <Th isNumeric>Prix total</Th>
-                <Th textAlign={"center"}>Actions</Th>
               </Tr>
             </Thead>
-            <CommandsTableBodyUser />
+            <CommandsTableBody />
           </Table>
         </TableContainer>
       </Box>

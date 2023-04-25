@@ -5,21 +5,27 @@ import {
   Heading,
   Flex,
   Box,
-  Link,
   Button,
   useColorModeValue,
   Stack,
   Center,
   Grid,
+  Input,
+  IconButton,
 } from "@chakra-ui/react";
 import HospicesDeBeaune from "../assets/HospicesDeBeaune.jpg";
-import cognac from "../assets/cognac.jpg";
-import tariquet from "../assets/tariquet.jpg";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { SearchIcon } from "@chakra-ui/icons";
 
 function BottleSettings(props) {
   const [bottles, setBottles] = useState();
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filteredBottles = bottles && bottles.filter((bottle) =>
+    bottle.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   useEffect(() => {
     axios.get("https://localhost:7201/api/article").then((response) => {
@@ -49,13 +55,20 @@ function BottleSettings(props) {
           </Link>
         </Box>
       </Flex>
-      <Grid templateColumns="repeat(3, 1fr)" pt={10} gap={6}>
-        {bottles &&
-          bottles.map((bottle) => (
-            <Box w="100%" h="100%" 
-                    mb={10}>
+      <Input
+        w={"30%"}
+        ml={20}
+        mt={5}
+        placeholder="Rechercher une bouteille"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      <Grid templateColumns="repeat(4, 1fr)" pt={10} gap={6}>
+        {filteredBottles &&
+          filteredBottles.map((bottle) => (
+            <Box key={bottle.id} w="100%" h="100%" mb={10}>
               <Center py={6}>
-                <Link href="/one-bottle-settings">
+                <Link to={`/one-bottle-settings/${bottle.id}`}>
                   <Box
                     width={200}
                     height={230}
@@ -78,7 +91,7 @@ function BottleSettings(props) {
                         mb={5}
                         fontFamily={"body"}
                       >
-                        <img src={tariquet} alt="pt_menu" />
+                        <img src={HospicesDeBeaune} alt="" />
                       </Heading>
 
                       <p>{bottle.name}</p>

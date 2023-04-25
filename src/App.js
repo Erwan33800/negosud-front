@@ -30,8 +30,11 @@ function App() {
 
         <Route path="/home" element={<Home />} />
 
-        <Route path="/bouteilles-settings" element={<BottleSettings />} />
-        <Route path="/one-bottle-settings" element={<OneBottleSettings />} />
+        <Route path="/bouteilles" element={<BottleSettings />} />
+        <Route
+          path="/one-bottle-settings/:id"
+          element={<OneBottleSettings />}
+        />
 
         <Route path="/clients-settings" element={<ClientsSettings />} />
         <Route path="/client-create" element={<CreateClient />} />

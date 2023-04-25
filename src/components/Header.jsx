@@ -27,7 +27,7 @@ function Header(props) {
         <NavLink
           style={{ fontSize: "14px", color: "#FFFBFB" }}
           end
-          to="/bouteilles-settings"
+          to="/bouteilles"
           className="regist"
         >
           Les vins

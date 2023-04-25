@@ -11,9 +11,19 @@ import {
 } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { NavLink } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function PanierModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    axios.get(`https://localhost:7201/api/cart`).then((response) => {
+      setCart(response.data);
+    });
+  }, []);
+
   return (
     <>
       <Button
@@ -31,12 +41,7 @@ function PanierModal() {
           <ModalHeader>Mon panier</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Box>
-              <p>nom bouteille - quantité - prix</p>
-              <p>nom bouteille - quantité - prix</p>
-              <p>nom bouteille - quantité - prix</p>
-              <p>nom bouteille - quantité - prix</p>
-            </Box>
+            <Box></Box>
             <Box>Prix total : 100€</Box>
           </ModalBody>
 

@@ -32,7 +32,7 @@ function UpdateS(props) {
       name: name,
       stock: stock,
       price: price,
-      userId: 3,
+      userId: 5,
     };
     await axios.put(`https://localhost:7201/api/article`, bottle);
     onClose();
@@ -58,7 +58,7 @@ function UpdateS(props) {
                 onChange={(e) => setName(e.target.value)}
               >
                 <FormLabel>Nom de la bouteille :</FormLabel>
-                <Input type="text" />
+                <Input type="text" value={props.bottle.name} />
               </FormControl>
               <FormControl
                 id="price"
