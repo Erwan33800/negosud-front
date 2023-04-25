@@ -25,9 +25,7 @@ function FournisseursTableBody() {
         fournisseurs.map((fournisseur) => (
           <Tbody>
             <Tr>
-              <Td>
-                {fournisseur.firstName} {fournisseur.lastName}
-              </Td>
+              <Td>{fournisseur.firstName}</Td>
               <Td>{fournisseur.email}</Td>
               <Td>{fournisseur.role}</Td>
               <Td>

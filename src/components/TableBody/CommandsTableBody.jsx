@@ -27,20 +27,6 @@ function CommandsTableBody(props) {
               <Td>{command.orderName}</Td>
               <Td>{command.orderDate}</Td>
               <Td isNumeric>{command.orderTotal}</Td>
-              <Td>{command.orderStatus}</Td>
-              <Td>
-                <Flex justify={"space-evenly"}>
-                  <UpdateF command={command} />
-                  <Button
-                    size={"sm"}
-                    variant="brand"
-                    color="red"
-                    onClick={() => handleDelete(command.id)}
-                  >
-                    <FontAwesomeIcon icon={faRemove} />
-                  </Button>
-                </Flex>
-              </Td>
             </Tr>
           </Tbody>
         ))}
