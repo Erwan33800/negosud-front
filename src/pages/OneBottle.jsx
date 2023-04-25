@@ -9,11 +9,21 @@ import {
   Button,
   useColorModeValue,
   Center,
+  Alert,
+  AlertIcon,
 } from "@chakra-ui/react";
+
 import tariquet from "../assets/tariquet.jpg";
 
 function OneBottleSettings() {
   const [quantity, setQuantity] = useState(1);
+  const [isAdded, setIsAdded] = useState(false);
+
+  const handleAddToCart = () => {
+    // Ajouter l'élément au panier ici
+    setIsAdded(true);
+    setTimeout(() => setIsAdded(false), 3000);
+  }
 
   const handleDecrease = () => {
     if (quantity > 1) {
@@ -26,6 +36,8 @@ function OneBottleSettings() {
   };
   const price = 15;
   const totalPrice = price * quantity;
+
+  
   return (
     <div>
       <Header />
@@ -80,7 +92,15 @@ function OneBottleSettings() {
                   </Text>
                 </Box>
                 <Text>Prix total : {totalPrice} €</Text>
-                <Button mt={10}>Ajouter au panier</Button>
+                <Button onClick={handleAddToCart} mt={10}>Ajouter au panier</Button>
+                <Box position="absolute" top="10px" right="10px">
+                {isAdded && (
+                  <Alert status="success" variant="solid" borderRadius="md">
+                    <AlertIcon />
+                      Votre commande a bien été ajoutée au panier !
+                  </Alert>
+                )}
+                </Box>
               </Box>
             </Flex>
           </Box>

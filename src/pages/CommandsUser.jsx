@@ -36,7 +36,7 @@ function CommandsSettingsUser(props) {
             </Text>
           </Box>
           <Box>            
-            <Link href="/">
+            <Link href="/home">
               <Button colorScheme="orange">Retour</Button>
             </Link>
           </Box>
