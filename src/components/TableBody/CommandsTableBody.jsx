@@ -26,7 +26,6 @@ function CommandsTableBody(props) {
             <Tr>
               <Td>{command.orderName}</Td>
               <Td>{command.orderDate}</Td>
-              <Td isNumeric>{command.orderTotal}</Td>
             </Tr>
           </Tbody>
         ))}

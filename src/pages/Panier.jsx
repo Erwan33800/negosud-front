@@ -23,9 +23,27 @@ import {
 import { useState, useEffect } from "react";
 import axios from "axios";
 import config from "../components/Login/config.json";
+import { useNavigate } from "react-router-dom";
 
 function Panier(props) {
   const [cart, setCart] = useState([]);
+  const orderDate = new Date();
+  const orderName = "Commande de " + config.users[1].email;
+  const history = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const orderInfo = {
+      orderName,
+      orderDate,
+      orderType: "string",
+      referenceName: "string",
+      userId: 5,
+    };
+    await axios.post(`https://localhost:7201/api/order`, orderInfo);
+    alert("Votre commande a bien été prise en compte");
+    history("/home");
+  };
 
   const cart2 = config.carts;
   const totalPriceCart =
@@ -36,11 +54,6 @@ function Panier(props) {
       setCart(response.data);
     });
   }, []);
-
-  const buyCard = () => {
-    alert("Votre commande a bien été prise en compte");
-    window.location.href = "/home";
-  };
 
   return (
     <div>
@@ -112,7 +125,7 @@ function Panier(props) {
                     <Button
                       variant="solid"
                       colorScheme="blue"
-                      onClick={buyCard}
+                      onClick={handleSubmit}
                     >
                       Acheter
                     </Button>

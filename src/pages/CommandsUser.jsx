@@ -48,7 +48,6 @@ function CommandsSettingsUser(props) {
               <Tr>
                 <Th>Nom de commande</Th>
                 <Th>Date</Th>
-                <Th isNumeric>Prix total</Th>
               </Tr>
             </Thead>
             <CommandsTableBody />
